@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  angular-app:
+    image: formulario-angular:latest
+    build: .
+    container_name: formulario-app
+    working_dir: /app
+    volumes:
+      - ./formulario:/app
+      # MEJORA: Evita que tu entorno local borre los node_modules del contenedor
+      - /app/node_modules # < - CRUCIAL: Evita que tu entorno local borre los node_modules del contenedor
+    ports:
+      - "4200:4200"
+    # MEJORA: Usar npx garantiza que use la versión exacta de Angular de tu proyecto
+    command: npx ng serve --host 0.0.0.0 --poll 2000
