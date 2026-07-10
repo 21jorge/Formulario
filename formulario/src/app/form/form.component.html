@@ -2,7 +2,35 @@
 <form [formGroup]="singUpForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="name">Name:</label>
-    <input type="text" id="name" formControlName="cosa" />  
+    <input type="text" id="name" formControlName="name" />  
+    <small *ngIf="f.name.errors?.required && f.name.touched" class="text-danger">
+      El nombre es obligatorio. 
+    </small>
   </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" formControlName="email" />  
+    
+    <small *ngIf="f.email.errors?.required && f.email.touched" class="email">
+      El email es obligatorio. 
+    </small>
+    <small *ngIf="f.email.errors?.email && f.email.touched" class="email">
+      El email no es válido.
+    </small>
+  </div>
+
+  <div formGroupName="address">
+
+    <h3>Datos de ubicación</h3>
+
+    <label for="street">Street:</label>
+    <input type="text" formControlName="street" />  
+    
+    <label for="city">City:</label>
+    <input type="text" formControlName="city" />
+  </div> 
+  <button type="submit">Registrar</button> 
+
 </form>
 

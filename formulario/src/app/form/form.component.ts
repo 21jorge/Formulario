@@ -13,20 +13,24 @@ export class FormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
     
   ngOnInit(): void {
-    this.crearFormulario
+    this.crearFormulario();
   }
 
     // Método para crear el formulario
     crearFormulario() {
       this.singUpForm = this.formBuilder.group({
-        nombre: ['', Validators.required, Validators.minLength(3)],
-        email: ['', Validators.required, Validators.email],
+        name: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
         address: this.formBuilder.group({
           street: ['', Validators.required],
           celular: ['Bogotá', Validators.required]
         })
-      });
+       });
   }
-  onSubmit() {
+  onSubmit() { }
+
+  get f() {
+    return this.singUpForm.controls;
   }
+
 }
