@@ -23,12 +23,17 @@ export class FormComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]],
         address: this.formBuilder.group({
           street: ['', Validators.required],
-          celular: ['Bogotá', Validators.required]
+          city: ['Bogotá', Validators.required]
         })
        });
   }
-  onSubmit() { }
-
+  onSubmit() { 
+    if (this.singUpForm.valid) {  
+      console.log('Datos listos para enviar', this.singUpForm.value);
+    } else {
+      this.singUpForm.markAllAsTouched();
+    }
+  }
   get f() {
     return this.singUpForm.controls;
   }

@@ -1,36 +1,47 @@
-<h1>Gestión de Registros</h1>
-<form [formGroup]="singUpForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="name">Name:</label>
-    <input type="text" id="name" formControlName="name" />  
-    <small *ngIf="f.name.errors?.required && f.name.touched" class="text-danger">
-      El nombre es obligatorio. 
-    </small>
+<div class="form-shell">
+  <div class="form-card">
+    <div class="brand-panel">
+      <div class="brand-icon">🔐</div>
+      <h2>Inicia sesión</h2>
+      <p>Gestiona tus registros de forma segura y sencilla.</p>
+    </div>
+
+    <form [formGroup]="singUpForm" (ngSubmit)="onSubmit()" class="register-form">
+      <div class="field-group">
+        <label for="name">Nombre completo</label>
+        <input type="text" id="name" formControlName="name" placeholder="Ingresa tu nombre" />
+        <small *ngIf="f.name.errors?.required && f.name.touched" class="error-text">
+          El nombre es obligatorio.
+        </small>
+      </div>
+
+      <div class="field-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" formControlName="email" placeholder="ejemplo@correo.com" />
+        <small *ngIf="f.email.errors?.required && f.email.touched" class="error-text">
+          El email es obligatorio.
+        </small>
+        <small *ngIf="f.email.errors?.email && f.email.touched" class="error-text">
+          El email no es válido.
+        </small>
+      </div>
+
+      <div formGroupName="address" class="address-box">
+        <h3>Datos de ubicación</h3>
+
+        <div class="field-group">
+          <label for="street">Calle</label>
+          <input type="text" id="street" formControlName="street" placeholder="Tu dirección" />
+        </div>
+
+        <div class="field-group">
+          <label for="city">Ciudad</label>
+          <input type="text" id="city" formControlName="city" placeholder="Ciudad" />
+        </div>
+      </div>
+
+      <button type="submit">Registrar</button>
+    </form>
   </div>
-
-  <div>
-    <label for="email">Email:</label>
-    <input type="email" formControlName="email" />  
-    
-    <small *ngIf="f.email.errors?.required && f.email.touched" class="email">
-      El email es obligatorio. 
-    </small>
-    <small *ngIf="f.email.errors?.email && f.email.touched" class="email">
-      El email no es válido.
-    </small>
-  </div>
-
-  <div formGroupName="address">
-
-    <h3>Datos de ubicación</h3>
-
-    <label for="street">Street:</label>
-    <input type="text" formControlName="street" />  
-    
-    <label for="city">City:</label>
-    <input type="text" formControlName="city" />
-  </div> 
-  <button type="submit">Registrar</button> 
-
-</form>
+</div>
 
